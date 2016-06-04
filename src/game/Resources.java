@@ -1,4 +1,5 @@
-package net.game;
+package game;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,8 @@ public class Resources {
 		sounds = new HashMap<String, Sound>();
 		
 		try {
+			images.put("knight", loadImage("assets/knight.png"));
+			images.put("mob", loadImage("assets/mob1.png"));
 			sprites.put("tiles", loadSprite("assets/spriteSheetA.png", 32, 32));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block

@@ -1,4 +1,5 @@
-package net.game;
+package game;
+
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -10,7 +11,7 @@ import states.GameState;
 import states.MenuState;
 
 public class Engine extends StateBasedGame{
-	private TiledMap waterMap;
+	//private TiledMap waterMap;
 	private int fpsUpdateRate;
 	
 	public Engine() {
@@ -38,13 +39,15 @@ public class Engine extends StateBasedGame{
 		gc.setAlwaysRender(true);
 		gc.setShowFPS(true);
 		gc.setVSync(true);
-		
+		gc.setMouseCursor("assets/cursor.png", 16, 13);
+		//gc.setMouseGrabbed(true);
+
 		new Resources();
 		
 		this.addState(new GameState());
 		this.addState(new MenuState());
 		     
-		waterMap = new TiledMap("assets/watermap.tmx");
+		//waterMap = new TiledMap("assets/watermap.tmx");
 		
 	}
 }
