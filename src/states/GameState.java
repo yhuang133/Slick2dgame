@@ -22,8 +22,10 @@ public class GameState extends BasicGameState{
 	public void init(GameContainer gc, StateBasedGame s) throws SlickException {
 		entities = new ArrayList<Entity>();
 		
-		entities.add(new Hero());
-		entities.add(new Mob());
+		Hero h = new Hero();
+		entities.add(h);
+		entities.add(new Mob(h));
+
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class Box {
 	}
 	
 	public float getEndY(){
-		return (y+height);
+		return (y + height);
 	}
 	
 	public float getHalfWidth(){

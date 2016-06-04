@@ -7,6 +7,11 @@ import game.Resources;
 public class Mob extends Entity{
 
 	private float speed = 0.3f;
+	private Hero h;
+	
+	public Mob(Hero h){
+		this.h = h;
+	}
 
 	@Override
 	public void init() {
@@ -20,7 +25,7 @@ public class Mob extends Entity{
 
 	@Override
 	public void update(GameContainer gc, int delta) {
-		x = Hero.getCenterX() - x;
+		x = h.getCenterX();
 		
 	}
 
