@@ -23,7 +23,7 @@ public class Resources {
 		try {
 			images.put("knight", loadImage("assets/knight.png"));
 			images.put("mob", loadImage("assets/mob1.png"));
-			sprites.put("tiles", loadSprite("assets/spriteSheetA.png", 32, 32));
+			//sprites.put("tiles", loadSprite("assets/spriteSheetA.png", 32, 32));
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

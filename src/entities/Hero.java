@@ -26,6 +26,9 @@ public class Hero extends Entity {
 		float mouseX = input.getMouseX();
 		float mouseY  = input.getMouseY();
 		
+		float xDist = mouseX - x;
+		float yDist = mouseY - y;
+
 		if (input.isKeyDown(Input.KEY_W)){
 			y -= speed * delta;
 		}else if(input.isKeyDown(Input.KEY_S)){
@@ -36,9 +39,6 @@ public class Hero extends Entity {
 		}else if(input.isKeyDown(Input.KEY_D)){
 			x += speed * delta;
 		}
-		
-		float xDist = mouseX - x;
-		float yDist = mouseY - y;
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
