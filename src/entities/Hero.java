@@ -8,6 +8,7 @@ import game.Resources;
 public class Hero extends Entity {
 
 	private float speed = 0.3f;
+	
 	@Override
 	public void init() {
 		x = 100;
@@ -43,7 +44,6 @@ public class Hero extends Entity {
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
-		
 	}
 	
 }

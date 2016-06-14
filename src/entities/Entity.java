@@ -10,7 +10,10 @@ import util.Box;
 public abstract class Entity extends Box{
 	public Image image;
 	public Color color;
-	
+	public Boolean colliding = false;
+	public float oldX = 0; //before collision
+	public float oldY = 0;
+
 	public Entity() {
 		init();
 	}
@@ -19,7 +22,6 @@ public abstract class Entity extends Box{
 
 	public void render(GameContainer gc, Graphics g) {
 		if(image != null) {
-			
 			image.setRotation((float)angleToTurn);
 			image.draw(x, y, width, height, color);
 		

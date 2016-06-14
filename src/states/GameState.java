@@ -45,8 +45,36 @@ public class GameState extends BasicGameState{
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)) s.enterState(States.MENU);
 		
 		int amount = entities.size();
+		
+		for(int j = 0; j < amount; j++)
+		{
+			for(int k = 0; k < amount; k++)
+			{
+				if(j != k)
+				{
+					if(entities.get(j).hitTest(entities.get(k)))
+					{
+						entities.get(k).colliding = true;
+						entities.get(j).colliding = true;
+					}
+				}
+			}
+		}
+		
 		for (int i = 0; i < amount; i++){
-			entities.get(i).update(gc, delta);
+			if(!entities.get(i).colliding) //if there is no collision
+			{
+				entities.get(i).oldX = entities.get(i).x;
+				entities.get(i).oldY = entities.get(i).y;
+				entities.get(i).update(gc, delta);
+			}
+			else
+			{
+				entities.get(i).x = entities.get(i).oldX;
+				entities.get(i).y = entities.get(i).oldY;
+				entities.get(i).colliding = false;
+				entities.get(i).update(gc, delta);
+			}
 		}
 	}
 
