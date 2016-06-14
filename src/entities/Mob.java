@@ -30,15 +30,15 @@ public class Mob extends Entity{
 
 		if(h.x > x)
 			x += speed * delta;
-		else
+		else if (h.x < x)
 			x -= speed * delta;
 		
 		if(h.y > y)
 			y += speed * delta;
-		else
+		else if(h.y < y)
 			y -= speed * delta;
 		
-		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) - 90;
+		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}

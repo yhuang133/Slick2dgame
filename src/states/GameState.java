@@ -48,7 +48,7 @@ public class GameState extends BasicGameState{
 		
 		for(int j = 0; j < amount; j++)
 		{
-			for(int k = 0; k < amount; k++)
+			for(int k = j + 1; k < amount; k++)
 			{
 				if(j != k)
 				{
@@ -62,19 +62,18 @@ public class GameState extends BasicGameState{
 		}
 		
 		for (int i = 0; i < amount; i++){
-			if(!entities.get(i).colliding) //if there is no collision
-			{
-				entities.get(i).oldX = entities.get(i).x;
-				entities.get(i).oldY = entities.get(i).y;
-				entities.get(i).update(gc, delta);
-			}
-			else
+			if(entities.get(i).colliding) //if there is a collision move to oldxy, reset collision
 			{
 				entities.get(i).x = entities.get(i).oldX;
 				entities.get(i).y = entities.get(i).oldY;
 				entities.get(i).colliding = false;
-				entities.get(i).update(gc, delta);
 			}
+			else //no collision then get old y for in case there will be collision
+			{
+				entities.get(i).oldX = entities.get(i).x;
+				entities.get(i).oldY = entities.get(i).y;
+			}
+			entities.get(i).update(gc, delta);
 		}
 	}
 
