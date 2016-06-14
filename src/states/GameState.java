@@ -50,13 +50,10 @@ public class GameState extends BasicGameState{
 		{
 			for(int k = j + 1; k < amount; k++)
 			{
-				if(j != k)
+				if(entities.get(j).hitTest(entities.get(k)))
 				{
-					if(entities.get(j).hitTest(entities.get(k)))
-					{
-						entities.get(k).colliding = true;
-						entities.get(j).colliding = true;
-					}
+					entities.get(k).colliding = true;
+					entities.get(j).colliding = true;
 				}
 			}
 		}
