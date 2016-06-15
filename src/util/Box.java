@@ -55,5 +55,13 @@ public class Box {
 		return(x < b.getEndX() && y < b.getEndY() &&  b.x < getEndX() && b.y < getEndY());
 	}
 	
+	public boolean hitTestX(Box b) {
+		return(x < b.getEndX() && b.x < getEndX());
+	}
+	
+	public boolean hitTestY(Box b) {
+		return(y < b.getEndY() && b.y < getEndY());
+	}
+	
 	
 }

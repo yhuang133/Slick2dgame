@@ -49,26 +49,38 @@ public class GameState extends BasicGameState{
 		for(int j = 0; j < amount; j++)
 		{
 			for(int k = j + 1; k < amount; k++)
-			{
-				//if(entities.get(j).getX() < b.getEndX() && y < b.getEndY() &&  b.x < getEndX() && b.y < getEndY())
+			{	
+				entities.get(j).x += entities.get(j).xSpeed;
+				entities.get(j).y += entities.get(j).ySpeed;
+
+				entities.get(k).x += entities.get(k).xSpeed;
+				entities.get(k).y += entities.get(k).ySpeed;
+
+				if(entities.get(j).hitTest(entities.get(k)))
 				{
-					
+					if(entities.get(j).hitTestX(entities.get(k)))
+					{
+						entities.get(j).x -= entities.get(j).xSpeed;
+						entities.get(k).x -= entities.get(k).xSpeed;
+						
+						entities.get(j).xSpeed = 0;
+						entities.get(k).xSpeed = 0;
+					}
+					else if(entities.get(j).hitTestY(entities.get(k)))
+					{
+						entities.get(j).y -= entities.get(j).ySpeed;
+						entities.get(k).y -= entities.get(k).ySpeed;
+						
+						entities.get(j).ySpeed = 0;
+						entities.get(k).ySpeed = 0;
+					}
+										
 				}
-				
 			}
 		}
 		
 		for (int i = 0; i < amount; i++){
-			if(!entities.get(i).colliding) //if there is no collision
-			{
-			}
-			else
-			{
-				//entities.get(i).vSpeed = 0;
-				//entities.get(i).hSpeed = 0;
-				entities.get(i).colliding = false;
-				
-			}
+
 			entities.get(i).update(gc, delta);
 		}
 	}

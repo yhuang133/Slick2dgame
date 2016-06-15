@@ -19,7 +19,7 @@ public class Mob extends Entity{
 		image = Resources.getImage("mob");
 		x = 400;
 		y = 400;
-		scale = 1;
+		scale = 3;
 		width = 30 * scale;
 		height = 25 * scale;
 		collideable = true;
@@ -53,7 +53,7 @@ public class Mob extends Entity{
 		ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
 		
 		
-		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) - 90;
+		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}
