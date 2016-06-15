@@ -21,6 +21,7 @@ public class Shield extends Entity{
 		scale = 2;
 		width = 27 * scale;
 		height = 9 * scale;
+		collideable = true;
 	}
 
 	@Override

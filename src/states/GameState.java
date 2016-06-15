@@ -12,8 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import entities.Entity;
 import entities.Hero;
 import entities.Mob;
-import entities.Shield;
-import game.Resources;
 
 public class GameState extends BasicGameState{
 	
@@ -52,28 +50,26 @@ public class GameState extends BasicGameState{
 		{
 			for(int k = j + 1; k < amount; k++)
 			{
-				if(entities.get(j).hitTest(entities.get(k)))
+				//if(entities.get(j).getX() < b.getEndX() && y < b.getEndY() &&  b.x < getEndX() && b.y < getEndY())
 				{
-					entities.get(k).colliding = true;
-					entities.get(j).colliding = true;
+					
 				}
+				
 			}
 		}
 		
 		for (int i = 0; i < amount; i++){
 			if(!entities.get(i).colliding) //if there is no collision
 			{
-				entities.get(i).oldX = entities.get(i).x;
-				entities.get(i).oldY = entities.get(i).y;
-				entities.get(i).update(gc, delta);
 			}
 			else
 			{
-				entities.get(i).x = entities.get(i).oldX;
-				entities.get(i).y = entities.get(i).oldY;
+				//entities.get(i).vSpeed = 0;
+				//entities.get(i).hSpeed = 0;
 				entities.get(i).colliding = false;
-				entities.get(i).update(gc, delta);
+				
 			}
+			entities.get(i).update(gc, delta);
 		}
 	}
 

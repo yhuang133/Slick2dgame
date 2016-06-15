@@ -19,6 +19,14 @@ public class Box {
 		this.height = height;
 	}
 	
+	public float getX(){
+		return x;
+	}
+	
+	public float getY(){
+		return y;
+	}
+	
 	public float getEndX(){
 		return  (x + width);
 	}
@@ -46,5 +54,6 @@ public class Box {
 	public boolean hitTest(Box b) {
 		return(x < b.getEndX() && y < b.getEndY() &&  b.x < getEndX() && b.y < getEndY());
 	}
+	
 	
 }

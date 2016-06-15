@@ -6,8 +6,8 @@ import org.newdawn.slick.Input;
 import game.Resources;
 
 public class Hero extends Entity {
-
-	private float speed = 0.3f;
+	
+	private final float maxSpeed = 10;
 	
 	@Override
 	public void init() {
@@ -17,7 +17,7 @@ public class Hero extends Entity {
 		width = 30 * scale;
 		height = 25 * scale;
 		image = Resources.getImage("knight");
-		
+		collideable = true;
 	}
 
 	@Override
@@ -27,23 +27,36 @@ public class Hero extends Entity {
 		float mouseX = input.getMouseX();
 		float mouseY  = input.getMouseY();
 		
-		float xDist = mouseX - x;
-		float yDist = mouseY - y;
-
+		float xDist = mouseX - (x + xSpeed);
+		float yDist = mouseY - (y + ySpeed);
+		
+		float accel = 0.1f * scale;
+		
+		float moveDirX = 0;
+		float moveDirY = 0;
+		
 		if (input.isKeyDown(Input.KEY_W)){
-			y -= speed * delta;
-		}else if(input.isKeyDown(Input.KEY_S)){
-			y += speed * delta;
+			moveDirY = -1;
 		}
+		else if(input.isKeyDown(Input.KEY_S)){
+			moveDirY = 1;
+		}
+		
 		if(input.isKeyDown(Input.KEY_A)){
-			x -= speed * delta;
-		}else if(input.isKeyDown(Input.KEY_D)){
-			x += speed * delta;
+			moveDirX = -1;
 		}
+		else if(input.isKeyDown(Input.KEY_D)){
+			moveDirX = 1;
+		}
+		
+		xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
+		ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}
+	
+	
 	
 }

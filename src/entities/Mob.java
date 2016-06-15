@@ -5,8 +5,9 @@ import org.newdawn.slick.GameContainer;
 import game.Resources;
 
 public class Mob extends Entity{
+	
+	private final float maxSpeed = 7;
 
-	private float speed = 0.1f;
 	private Hero h;
 	
 	public Mob(Hero h){
@@ -18,25 +19,39 @@ public class Mob extends Entity{
 		image = Resources.getImage("mob");
 		x = 400;
 		y = 400;
-		scale = 2;
+		scale = 1;
 		width = 30 * scale;
 		height = 25 * scale;
+		collideable = true;
 	}
 
 	@Override
 	public void update(GameContainer gc, int delta) {
-		float xDist = h.x - x;
-		float yDist = h.y - y;
-
-		if(x + 1 < h.x)
-			x += speed * delta;
-		else if (x + 1 > h.x)
-			x -= speed * delta;
+		float xDist = h.x - (x + xSpeed);
+		float yDist = h.y - (y + ySpeed);
 		
-		if(y + 1 < h.y)
-			y += speed * delta;
-		else if (y + 1 > h.y)
-			y -= speed * delta;
+		float accel = 0.05f;
+		
+		float moveDirX = 0;
+		float moveDirY = 0;
+		
+		if (h.y < y){
+			moveDirY = -1;
+		}
+		else if(h.y > y){
+			moveDirY = 1;
+		}
+		
+		if (h.x < x){
+			moveDirX = -1;
+		}
+		else if(h.x > x){
+			moveDirX = 1;
+		}
+		
+		xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
+		ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
+		
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) - 90;
 		

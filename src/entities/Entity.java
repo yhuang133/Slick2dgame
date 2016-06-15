@@ -10,9 +10,10 @@ import util.Box;
 public abstract class Entity extends Box{
 	public Image image;
 	public Color color;
-	public Boolean colliding = false;
-	public float oldX = 0; //before collision
-	public float oldY = 0;
+	public boolean colliding = false;
+	public boolean collideable = false;
+	public float xSpeed;
+	public float ySpeed;
 
 	public Entity() {
 		init();
@@ -23,6 +24,8 @@ public abstract class Entity extends Box{
 	public void render(GameContainer gc, Graphics g) {
 		if(image != null) {
 			image.setRotation((float)angleToTurn);
+			x += xSpeed;
+			y += ySpeed;
 			image.draw(x, y, width, height, color);
 		
 		}
@@ -30,5 +33,26 @@ public abstract class Entity extends Box{
 	
 	public abstract void update(GameContainer gc, int delta);
 	
+	public float getXSpeed()
+	{
+		return xSpeed;
+	}
+	
+	public float getYSpeed()
+	{
+		return ySpeed;
+	}
+	
+	public void setXSpeed(float newSpeed)
+	{
+		xSpeed = newSpeed;
+	}
+	
+	public void setYSpeed(float newSpeed)
+	{
+		ySpeed = newSpeed;
+	}
+	
+
 	
 }
