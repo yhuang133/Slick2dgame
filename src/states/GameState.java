@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import entities.Entity;
 import entities.Hero;
 import entities.Mob;
+import entities.Shield;
 import game.Resources;
 
 public class GameState extends BasicGameState{
@@ -25,6 +26,7 @@ public class GameState extends BasicGameState{
 		Hero h = new Hero();
 		entities.add(h);
 		entities.add(new Mob(h));
+		//entities.add(new Shield(h));
 
 	}
 
@@ -39,7 +41,7 @@ public class GameState extends BasicGameState{
 			entities.get(i).render(gc,  g);
 		}
 	}
-
+	
 	@Override
 	public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)) s.enterState(States.MENU);
@@ -59,18 +61,19 @@ public class GameState extends BasicGameState{
 		}
 		
 		for (int i = 0; i < amount; i++){
-			if(entities.get(i).colliding) //if there is a collision move to oldxy, reset collision
+			if(!entities.get(i).colliding) //if there is no collision
+			{
+				entities.get(i).oldX = entities.get(i).x;
+				entities.get(i).oldY = entities.get(i).y;
+				entities.get(i).update(gc, delta);
+			}
+			else
 			{
 				entities.get(i).x = entities.get(i).oldX;
 				entities.get(i).y = entities.get(i).oldY;
 				entities.get(i).colliding = false;
+				entities.get(i).update(gc, delta);
 			}
-			else //no collision then get old y for in case there will be collision
-			{
-				entities.get(i).oldX = entities.get(i).x;
-				entities.get(i).oldY = entities.get(i).y;
-			}
-			entities.get(i).update(gc, delta);
 		}
 	}
 

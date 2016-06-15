@@ -44,7 +44,7 @@ public class Box {
 	}
 	
 	public boolean hitTest(Box b) {
-		return(b.getEndX() >= x && b.getEndY() >= y && getEndX() >= b.x && getEndY() >= b.y);
+		return(x < b.getEndX() && y < b.getEndY() &&  b.x < getEndX() && b.y < getEndY());
 	}
 	
 }

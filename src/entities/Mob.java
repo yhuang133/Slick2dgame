@@ -28,17 +28,17 @@ public class Mob extends Entity{
 		float xDist = h.x - x;
 		float yDist = h.y - y;
 
-		if(h.x > x)
+		if(x + 1 < h.x)
 			x += speed * delta;
-		else if (h.x < x)
+		else if (x + 1 > h.x)
 			x -= speed * delta;
 		
-		if(h.y > y)
+		if(y + 1 < h.y)
 			y += speed * delta;
-		else if(h.y < y)
+		else if (y + 1 > h.y)
 			y -= speed * delta;
 		
-		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
+		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) - 90;
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}
