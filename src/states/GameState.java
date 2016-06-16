@@ -58,23 +58,7 @@ public class GameState extends BasicGameState{
 
 				if(entities.get(j).hitTest(entities.get(k)))
 				{
-					if(entities.get(j).hitTestX(entities.get(k)))
-					{
-						entities.get(j).x -= entities.get(j).xSpeed;
-						entities.get(k).x -= entities.get(k).xSpeed;
-						
-						entities.get(j).xSpeed = 0;
-						entities.get(k).xSpeed = 0;
-					}
-					else if(entities.get(j).hitTestY(entities.get(k)))
-					{
-						entities.get(j).y -= entities.get(j).ySpeed;
-						entities.get(k).y -= entities.get(k).ySpeed;
-						
-						entities.get(j).ySpeed = 0;
-						entities.get(k).ySpeed = 0;
-					}
-										
+									
 				}
 			}
 		}

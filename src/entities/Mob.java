@@ -49,8 +49,8 @@ public class Mob extends Entity{
 			moveDirX = 1;
 		}
 		
-		xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
-		ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
+		//xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
+		//ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
 		
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
