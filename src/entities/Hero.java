@@ -30,7 +30,7 @@ public class Hero extends Entity {
 		float xDist = mouseX - (x + xSpeed);
 		float yDist = mouseY - (y + ySpeed);
 		
-		float accel = 0.1f * scale;
+		float accel = 0.5f * scale;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;

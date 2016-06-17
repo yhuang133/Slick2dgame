@@ -30,7 +30,7 @@ public class Mob extends Entity{
 		float xDist = h.x - (x + xSpeed);
 		float yDist = h.y - (y + ySpeed);
 		
-		float accel = 0.05f;
+		float accel = 0.5f * scale;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;
