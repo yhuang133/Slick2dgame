@@ -19,18 +19,19 @@ public class GameState extends BasicGameState{
 	private ArrayList<Entity> entities;
 	
 	@Override
-	public void init(GameContainer gc, StateBasedGame s) throws SlickException {
+	public void init(GameContainer gc, StateBasedGame s) throws SlickException
+	{
 		entities = new ArrayList<Entity>();
 		
 		Hero h = new Hero();
 		entities.add(h);
 		entities.add(new Mob(h));
 		//entities.add(new Shield(h));
-
 	}
 
 	@Override
-	public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException {
+	public void render(GameContainer gc, StateBasedGame s, Graphics g) throws SlickException
+	{
 		g.drawString("Game state", 50, 50);
 		
 		//Resources.getSpriteImage("tiles", 0, 0).draw();
@@ -42,7 +43,8 @@ public class GameState extends BasicGameState{
 	}
 	
 	@Override
-	public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException {
+	public void update(GameContainer gc, StateBasedGame s, int delta) throws SlickException
+	{
 		if(gc.getInput().isKeyPressed(Input.KEY_ENTER)) s.enterState(States.MENU);
 		
 		int amount = entities.size();
@@ -56,7 +58,8 @@ public class GameState extends BasicGameState{
 	}
 
 	@Override
-	public int getID() {
+	public int getID()
+	{
 		return States.GAME;
 	}
 	
@@ -67,37 +70,16 @@ public class GameState extends BasicGameState{
 			for(int k = j + 1; k < amount; k++)
 			{
 				entities.get(j).x += entities.get(j).xSpeed;
-				
-				if(entities.get(j).hitTest(entities.get(k)))
-				{
-					entities.get(j).x -= entities.get(j).xSpeed;
-					entities.get(j).xSpeed = 0;
-				}
-				
 				entities.get(j).y += entities.get(j).ySpeed;
-
+				entities.get(k).x += entities.get(k).xSpeed;
+				entities.get(k).y += entities.get(k).ySpeed;
+				
 				if(entities.get(j).hitTest(entities.get(k)))
 				{
-					entities.get(j).y -= entities.get(j).ySpeed;
-					entities.get(j).ySpeed = 0;
+					entities.get(j).onCollision(entities.get(k));
+					entities.get(k).onCollision(entities.get(j));
 				}
 				
-				
-				entities.get(k).x += entities.get(k).xSpeed;
-				
-				if(entities.get(k).hitTest(entities.get(j)))
-				{
-					entities.get(k).x -= entities.get(k).xSpeed;
-					entities.get(k).xSpeed = 0;
-				}
-				
-				entities.get(k).y += entities.get(k).ySpeed;
-
-				if(entities.get(k).hitTest(entities.get(j)))
-				{
-					entities.get(k).y -= entities.get(k).ySpeed;
-					entities.get(k).ySpeed = 0;
-				}
 			}
 		}
 	}

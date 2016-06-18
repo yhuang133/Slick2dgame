@@ -5,8 +5,8 @@ import org.newdawn.slick.Input;
 
 import game.Resources;
 
-public class Hero extends Entity {
-	
+public class Hero extends Entity
+{
 	private final float maxSpeed = 10;
 	
 	@Override
@@ -19,11 +19,11 @@ public class Hero extends Entity {
 		width = 30 * scale;
 		height = 31 * scale;
 		image = Resources.getImage("wizard");
-		collideable = true;
 	}
 
 	@Override
-	public void update(GameContainer gc, int delta) {
+	public void update(GameContainer gc, int delta)
+	{
 
 		Input input = gc.getInput();
 		float mouseX = input.getMouseX();
@@ -59,6 +59,28 @@ public class Hero extends Entity {
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}
 	
-	
+	@Override
+	public void onCollision(Entity other)
+	{
+		if(this.hitTest(other))
+		{
+			x -= xSpeed;
+			y -= ySpeed;
+			
+			x += xSpeed;
+			if(this.hitTest(other))
+			{
+				x -= xSpeed;
+				xSpeed = 0;
+			}
+
+			y += ySpeed;
+			if(this.hitTest(other))
+			{
+				y -= ySpeed;
+				ySpeed = 0;
+			}
+		}
+	}
 	
 }

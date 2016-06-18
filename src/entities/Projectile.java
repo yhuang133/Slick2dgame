@@ -17,7 +17,6 @@ public class Projectile extends Entity{
 	public void init() {
 		image = Resources.getImage("fireball");
 		scale = h.scale;
-		collideable = true;
 	}
 
 	@Override

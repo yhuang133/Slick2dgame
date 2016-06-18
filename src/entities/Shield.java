@@ -4,7 +4,8 @@ import org.newdawn.slick.GameContainer;
 
 import game.Resources;
 
-public class Shield extends Entity{
+public class Shield extends Entity
+{
 
 	private final float maxSpeed = 7;
 
@@ -24,11 +25,11 @@ public class Shield extends Entity{
 		scale = 3;
 		width = 30 * scale;
 		height = 25 * scale;
-		collideable = true;
 	}
 
 	@Override
-	public void update(GameContainer gc, int delta) {
+	public void update(GameContainer gc, int delta)
+	{
 		float xDist = h.x - (x + xSpeed);
 		float yDist = h.y - (y + ySpeed);
 		
@@ -53,7 +54,6 @@ public class Shield extends Entity{
 		
 		//xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
 		//ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
-		
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
 		
