@@ -15,8 +15,8 @@ public class Hero extends Entity {
 		y = 100;
 		scale = 3;
 		width = 30 * scale;
-		height = 25 * scale;
-		image = Resources.getImage("knight");
+		height = 31 * scale;
+		image = Resources.getImage("wizard");
 		collideable = true;
 	}
 
@@ -30,7 +30,7 @@ public class Hero extends Entity {
 		float xDist = mouseX - (x + xSpeed);
 		float yDist = mouseY - (y + ySpeed);
 		
-		float accel = 0.5f * scale;
+		float accel = 0.08f;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;

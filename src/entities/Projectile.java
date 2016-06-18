@@ -4,33 +4,28 @@ import org.newdawn.slick.GameContainer;
 
 import game.Resources;
 
-public class Mob extends Entity{
-	
+public class Projectile extends Entity{
 	private final float maxSpeed = 7;
 
 	private Hero h;
 	
-	public Mob(Hero h){
+	public Projectile(Hero h){
 		this.h = h;
 	}
 
 	@Override
 	public void init() {
-		image = Resources.getImage("mob");
-		x = 400;
-		y = 400;
-		scale = 3;
-		width = 30 * scale;
-		height = 25 * scale;
+		image = Resources.getImage("fireball");
+		scale = h.scale;
 		collideable = true;
 	}
 
 	@Override
-	public void update(GameContainer gc, int delta) {
+	public void update (GameContainer gc, int delta) {
 		float xDist = h.x - (x + xSpeed);
 		float yDist = h.y - (y + ySpeed);
 		
-		float accel = 0.03f;
+		float accel = 0.5f * scale;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;
@@ -57,6 +52,5 @@ public class Mob extends Entity{
 		
 		image.setCenterOfRotation(image.getWidth()/2 * scale, image.getHeight()/2 * scale);
 	}
-	
 
 }

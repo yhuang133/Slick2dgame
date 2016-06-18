@@ -47,7 +47,7 @@ public class GameState extends BasicGameState{
 		
 		int amount = entities.size();
 		
-		for(int j = 0; j < amount; j++)
+		for(int j = 0; j < amount - 1; j++)
 		{
 			for(int k = j + 1; k < amount; k++)
 			{
