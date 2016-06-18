@@ -10,10 +10,12 @@ public class Hero extends Entity {
 	private final float maxSpeed = 10;
 	
 	@Override
-	public void init() {
+	public void init() 
+	{
 		x = 100;
 		y = 100;
 		scale = 3;
+		
 		width = 30 * scale;
 		height = 31 * scale;
 		image = Resources.getImage("wizard");

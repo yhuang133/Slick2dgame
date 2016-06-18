@@ -15,13 +15,15 @@ public abstract class Entity extends Box{
 	public float xSpeed;
 	public float ySpeed;
 
-	public Entity() {
+	public Entity() 
+	{
 		init();
 	}
 	
 	public abstract void init();
 
-	public void render(GameContainer gc, Graphics g) {
+	public void render(GameContainer gc, Graphics g) 
+	{
 		if(image != null) {
 			image.setRotation((float)angleToTurn);
 			image.draw(x, y, width, height, color);

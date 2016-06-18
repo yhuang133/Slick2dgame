@@ -10,12 +10,14 @@ public class Shield extends Entity{
 
 	private Hero h;
 	
-	public Shield(Hero h){
+	public Shield(Hero h)
+	{
 		this.h = h;
 	}
 
 	@Override
-	public void init() {
+	public void init() 
+	{
 		image = Resources.getImage("shield");
 		x = h.x + 20;
 		y = h.y + 10;

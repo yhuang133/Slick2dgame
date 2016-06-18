@@ -47,6 +47,21 @@ public class GameState extends BasicGameState{
 		
 		int amount = entities.size();
 		
+		collisionMover(amount);
+		
+		for (int i = 0; i < amount; i++)
+		{
+			entities.get(i).update(gc, delta);
+		}
+	}
+
+	@Override
+	public int getID() {
+		return States.GAME;
+	}
+	
+	public void collisionMover(int amount)
+	{
 		for(int j = 0; j < amount - 1; j++)
 		{
 			for(int k = j + 1; k < amount; k++)
@@ -85,17 +100,6 @@ public class GameState extends BasicGameState{
 				}
 			}
 		}
-		
-		for (int i = 0; i < amount; i++)
-		{
-
-			entities.get(i).update(gc, delta);
-		}
-	}
-
-	@Override
-	public int getID() {
-		return States.GAME;
 	}
 
 }
