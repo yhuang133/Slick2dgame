@@ -5,8 +5,6 @@ public class Box {
 	public float y;
 	public float width;
 	public float height;
-	public float angleToTurn;
-	public float scale;
 	
 	public Box() {
 		

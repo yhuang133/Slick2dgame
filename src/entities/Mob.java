@@ -7,7 +7,7 @@ import game.Resources;
 public class Mob extends Entity
 {
 	
-	private final float maxSpeed = 7;
+	private final float maxSpeed = 5;
 
 	private Hero h;
 	
@@ -22,7 +22,7 @@ public class Mob extends Entity
 		image = Resources.getImage("mob");
 		x = 400;
 		y = 400;
-		scale = 3;
+		scale = 2;
 		width = 30 * scale;
 		height = 25 * scale;
 	}
@@ -30,10 +30,10 @@ public class Mob extends Entity
 	@Override
 	public void update(GameContainer gc, int delta)
 	{
-		float xDist = h.x - (x + xSpeed);
-		float yDist = h.y - (y + ySpeed);
+		float xDist = (h.x + h.width) - (x + width + xSpeed);
+		float yDist = (h.y + h.height) - (y + height + ySpeed);
 		
-		float accel = 0.03f;
+		float accel = 0.01f;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;
@@ -52,8 +52,8 @@ public class Mob extends Entity
 			moveDirX = 1;
 		}
 		
-		//xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
-		//ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
+		xSpeed += ((moveDirX * maxSpeed) - xSpeed) * accel;
+		ySpeed += ((moveDirY * maxSpeed) - ySpeed) * accel;
 		
 		
 		angleToTurn = (float) Math.toDegrees(Math.atan2(yDist, xDist)) + 90;
@@ -68,6 +68,8 @@ public class Mob extends Entity
 		{
 			x -= xSpeed;
 			y -= ySpeed;
+			other.x -= other.xSpeed;
+			other.y -= other.ySpeed;
 			
 			x += xSpeed;
 			if(this.hitTest(other))

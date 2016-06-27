@@ -11,9 +11,11 @@ public abstract class Entity extends Box
 {
 	public Image image;
 	public Color color;
-	public boolean colliding = false;
 	public float xSpeed;
 	public float ySpeed;
+	public float angleToTurn;
+	public float scale;
+	public boolean isAlive = true;
 
 	public Entity() 
 	{

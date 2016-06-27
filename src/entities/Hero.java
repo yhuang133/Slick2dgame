@@ -7,14 +7,14 @@ import game.Resources;
 
 public class Hero extends Entity
 {
-	private final float maxSpeed = 10;
+	private final float maxSpeed = 7;
 	
 	@Override
 	public void init() 
 	{
 		x = 100;
 		y = 100;
-		scale = 3;
+		scale = 2;
 		
 		width = 30 * scale;
 		height = 31 * scale;
@@ -29,25 +29,29 @@ public class Hero extends Entity
 		float mouseX = input.getMouseX();
 		float mouseY  = input.getMouseY();
 		
-		float xDist = mouseX - (x + xSpeed);
-		float yDist = mouseY - (y + ySpeed);
+		float xDist = mouseX - (x + width/2 + xSpeed);
+		float yDist = mouseY - (y + height/2  + ySpeed);
 		
-		float accel = 0.08f;
+		float accel = 0.3f;
 		
 		float moveDirX = 0;
 		float moveDirY = 0;
 		
-		if (input.isKeyDown(Input.KEY_W)){
+		if (input.isKeyDown(Input.KEY_W))
+		{
 			moveDirY = -1;
 		}
-		else if(input.isKeyDown(Input.KEY_S)){
+		else if(input.isKeyDown(Input.KEY_S))
+		{
 			moveDirY = 1;
 		}
 		
-		if(input.isKeyDown(Input.KEY_A)){
+		if(input.isKeyDown(Input.KEY_A))
+		{
 			moveDirX = -1;
 		}
-		else if(input.isKeyDown(Input.KEY_D)){
+		else if(input.isKeyDown(Input.KEY_D))
+		{
 			moveDirX = 1;
 		}
 		
@@ -62,10 +66,12 @@ public class Hero extends Entity
 	@Override
 	public void onCollision(Entity other)
 	{
-		if(this.hitTest(other))
+		if(this.hitTest(other) && (other instanceof Mob))
 		{
 			x -= xSpeed;
 			y -= ySpeed;
+			other.x -= other.xSpeed;
+			other.y -= other.ySpeed;
 			
 			x += xSpeed;
 			if(this.hitTest(other))
